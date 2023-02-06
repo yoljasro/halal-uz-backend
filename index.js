@@ -8,25 +8,25 @@ const mongoose = require("mongoose");
 const { json } = require("body-parser");
 let port = process.env.PORT || 4000;
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Node Js API from JasurBek 1",
-      version: "1.0.0",
-    },
+// const options = {
+//   definition: {
+//     openapi: "3.0.0",
+//     info: {
+//       title: "Node Js API from JasurBek 1",
+//       version: "1.0.0",
+//     },
 
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-      {
-        url: "http://139.144.180.200:3000",
-      },
-    ],
-  },
-  apis: ["./index.js"],
-};
+//     servers: [
+//       {
+//         url: "http://localhost:3000",
+//       },
+//       {
+//         url: "http://139.144.180.200:3000",
+//       },
+//     ],
+//   },
+//   apis: ["./index.js"],
+// };
 
 app.use(cors());
 app.use(json());

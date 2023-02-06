@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./nginx
+    image: nginx:prod
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+
+volumes:
+  static_volume:
+  media_volume:
+
