@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    build: ./nginx
+    build: ./Backend/nginx
     image: nginx:prod
     volumes:
       - static_volume:/app/staticfiles
