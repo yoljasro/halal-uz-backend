@@ -1,5 +1,10 @@
 const Plan = require("../models/plan");
 
+const getPlanController = async (req, res) => {
+  const plan = await Plan.find();
+  res.status(200).json({ plan });
+};
+
 const CreatePlanController = async (req, res) => {
   try {
     console.log(req.body);
@@ -63,4 +68,5 @@ const CreatePlanController = async (req, res) => {
 
 module.exports = {
   CreatePlanController,
+  getPlanController,
 };

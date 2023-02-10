@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const adminRouter = require("./src/routers/admin")
 const { json } = require("body-parser");
 const createRequestController = require("./src/controllers/request.controller")
-const CreatePlanController = require("./src/controllers/plan.controller")
+const {CreatePlanController , getPlanController} = require("./src/controllers/plan.controller")
 let port = process.env.PORT || 5000;
  
 const options = {
@@ -117,6 +117,23 @@ connect();
  */
 
 
+
+/**
+ * @swagger
+ * /plan:
+ *   get:
+ *     description: This is get method for plans
+ *     responses:
+ *       200:
+ *         description: Plans list
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
@@ -133,6 +150,10 @@ app.post("/request" , (req  , res)=> {
 
 app.post("/plan" , (req , res) => {
   CreatePlanController
+})
+
+app.get("/plan"  , (req , res) => {
+  getPlanController
 })
 app.listen(port, () => {
   console.log(`Example app is listening on port https://localhost:${port}`);
