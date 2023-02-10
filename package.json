@@ -13,6 +13,9 @@
   "author": "Saidaliyev Jasur",
   "license": "ISC",
   "dependencies": {
+    "admin-bro": "^4.0.1",
+    "admin-bro-expressjs": "^2.1.1",
+    "admin-bro-mongoose": "^0.5.2",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

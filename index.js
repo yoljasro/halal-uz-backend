@@ -5,59 +5,117 @@ const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
+const adminRouter = require("./src/routers/admin")
 const { json } = require("body-parser");
-let port = process.env.PORT || 4000;
+const createRequestController = require("./src/controllers/request.controller")
+const CreatePlanController = require("./src/controllers/plan.controller")
+let port = process.env.PORT || 5000;
+ 
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "worldhalal.uz API",
+      version: "1.0.0",
+    },
 
-// const options = {
-//   definition: {
-//     openapi: "3.0.0",
-//     info: {
-//       title: "Node Js API from JasurBek 1",
-//       version: "1.0.0",
-//     },
-
-//     servers: [
-//       {
-//         url: "http://localhost:3000",
-//       },
-//       {
-//         url: "http://139.144.180.200:3000",
-//       },
-//     ],
-//   },
-//   apis: ["./index.js"],
-// };
+    servers: [
+      {
+        url: "http://localhost:3000",
+      }
+    ],
+  }, 
+  apis: ["./index.js"],
+};
 
 app.use(cors());
 app.use(json());
 
-// const swaggerSpec = swaggerJSDOC(options);
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+const swaggerSpec = swaggerJSDOC(options);
+app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/admin" , adminRouter)
 // app.use(express.static("public"));
 // app.use("/img", express.static(path.join(__dirname, "public/img")));
 
-// const uri =
-//   "mongodb+srv://<jasur>:0Eyu3nFcPvnlRNag@cluster0.luf7pct.mongodb.net/?retryWrites=true&w=majority/testfor";
+const uri = "mongodb+srv://jasurbek1221:zg4ifgKiaVTL0nUu@worldhalal.jnka9xa.mongodb.net/?retryWrites=true&w=majority"
+async function connect() {
+  try {
+    await mongoose.connect(uri);
+    console.log("Connected MongoDB ");
+  } catch (error) {
+    console.log(error);
+  }
+}
+connect();
 
-// async function connect() {
-//   try {
-//     await mongoose.connect(uri);
-//     console.log("Connected MongoDB ");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// connect();
 
-// /**
-//  * @swagger
-//  * /product-info:
-//  *   get:
-//  *     description: This is a get api call
-//  *     responses:
-//  *       200:
-//  *         description: Success
-//  */  
+/**
+ * @swagger
+ * /request:
+ *   post:
+ *     summary: Request post
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                email:
+ *                  type: string
+ *                password:
+ *                  type: string
+ *                name : 
+ *                  type : string
+ *              required:
+ *                - email
+ *                - password
+ *                - name
+ *     description: For request post method
+ *     responses:
+ *         201:
+ *         description: Request sended in database
+ * 400 :
+ *      description : Already exites email users
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+
+    /**
+ * @swagger
+ * /plan:
+ *   post:
+ *     summary: Plan 
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                email:
+ *                  type: string
+ *                password:
+ *                  type: string
+ *                name : 
+ *                  type : string
+ *              required:
+ *                - email
+ *                - password
+ *                - name
+ *     description: For plan post method 
+ *     responses:
+ *         201:
+ *         description: Created database plans
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
 
 // app.use((req, res, next) => {
 //   req.headers.authorization;
@@ -69,12 +127,13 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-// app.get("/product-info", (req, res) => {
-//   res.send(importData);
-// });
+app.post("/request" , (req  , res)=> {
+  createRequestController
+})
 
-// app.post("/product-info-buy", createProductController );
-
+app.post("/plan" , (req , res) => {
+  CreatePlanController
+})
 app.listen(port, () => {
   console.log(`Example app is listening on port https://localhost:${port}`);
 });
