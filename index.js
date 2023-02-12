@@ -22,6 +22,9 @@ const options = {
     servers: [
       {
         url: "http://localhost:5000",
+      } , 
+      {
+        url : "https://halal-uz-backend-production.up.railway.app"
       }
     ],
   }, 
