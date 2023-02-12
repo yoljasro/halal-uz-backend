@@ -14,7 +14,7 @@ const requestSchema = new Schema({
     required: true,
   },
   activity: {
-    type: String,
+    type: String, 
     required: true,
   },
   phone: {
