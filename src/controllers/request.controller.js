@@ -3,7 +3,7 @@ const Request = require("../models/request")
 const createRequestController = async (req, res) => {
     try {
       console.log(req.body); 
-      const { name, lastname, sevenam } = req.body;
+      const { name, email, password } = req.body;
   
       const candidate = await User.findOne({ email });
   
