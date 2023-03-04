@@ -5,7 +5,7 @@ const getPlanController = async (req, res) => {
   res.status(200).json({ plan });
 };
 
-const CreatePlanController = async (req, res) => {
+const createPlanController = async (req, res) => {
   try {
     console.log(req.body);
     const {
@@ -67,6 +67,6 @@ const CreatePlanController = async (req, res) => {
 };
 
 module.exports = {
-  CreatePlanController,
+  createPlanController,
   getPlanController,
 };

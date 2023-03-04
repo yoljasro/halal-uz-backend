@@ -8,8 +8,8 @@ const mongoose = require("mongoose");
 const adminRouter = require("./src/routers/admin")
 const { json } = require("body-parser");
 const userData = require("./src/data/user.json")
-const createRequestController = require("./src/controllers/request.controller")
-const {CreatePlanController , getPlanController} = require("./src/controllers/plan.controller")
+const {createRequestController} = require("./src/controllers/request.controller")
+const {createPlanController, getPlanController} = require("./src/controllers/plan.controller")
 let port = process.env.PORT || 5000;
  
 const options = {
@@ -165,20 +165,13 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.post("/request" , (req  , res)=> {
-  createRequestController
+app.post("/request", createRequestController);
+app.post("/plan", createPlanController)
+app.get("/plan", getPlanController)
+app.get("/user", (req, res) => {
+  res.status(200).json(userData);
 })
 
-app.post("/plan" , (req , res) => {
-  CreatePlanController
-})
-
-app.get("/plan"  , (req , res) => {
-  getPlanController
-})
-app.get("/user" , (req , res)=>{
-  userData
-})
 app.listen(port, () => {
   console.log(`Example app is listening on port https://localhost:${port}`);
 });
