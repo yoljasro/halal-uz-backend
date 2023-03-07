@@ -4,13 +4,12 @@
   "description": "this is halol uz package",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node index.js"
  } , 
   "keywords": [
     "halol",
     "jasur"
-  ],
+  ], 
   "author": "Saidaliyev Jasur",
   "license": "ISC",
   "dependencies": {

@@ -43,9 +43,9 @@ app.use("/admin" , adminRouter)
 
 const uri = "mongodb+srv://jasurbek1221:zg4ifgKiaVTL0nUu@worldhalal.jnka9xa.mongodb.net/?retryWrites=true&w=majority"
 async function connect() {
-  try {
+  try { 
     await mongoose.connect(uri);
-    console.log("Connected MongoDB ");
+    console.log("Connected MongoDB "); 
   } catch (error) {
     console.log(error);
   }
@@ -159,7 +159,7 @@ connect();
 //   req.headers.authorization;
 //   console.log(req.path);
 //   next();
-// });
+// });  
 
 app.get("/", (req, res) => {
   res.send("hello world");

@@ -7,7 +7,7 @@ const mongoose =require("mongoose")
 AdminBro.registerAdapter(AdminBroMongoose)
 const adminBro = new AdminBro({
     databases : [mongoose] , 
-    rootPath : "/admin" , 
+    rootPath : "/admin"  , 
 })
 
 const ADMIN ={
