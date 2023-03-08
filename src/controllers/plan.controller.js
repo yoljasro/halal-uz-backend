@@ -57,7 +57,7 @@ const createPlanController = async (req, res) => {
       tenpm,
     };
 
-    const plan = await new Request(newPlan).save();
+    const plan = await new Plan(newPlan).save();
 
     res.status(201).json({ message: "Plan created", data: plan });
   } catch (e) {

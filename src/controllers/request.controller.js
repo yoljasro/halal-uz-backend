@@ -13,18 +13,17 @@ const createRequestController = async (req, res) => {
     //   const hashPassword = await bcrypt.hash(password, 12);
 
     const newRequest = {
-      name,
-      surname,
-      brandName,
-      activity,
-      phone,
-      email,
+      name: name,
+      surname: surname,
+      brandName: brandName,
+      activity: activity,
+      phone: phone,
+      email: email,
     };
 
     const request = await new Request(newRequest).save();
 
     res.status(201).json({ message: "Request sended", data: request });
-    res.status(400).json({message : 'User error'});
   } catch (e) {
     console.log(e.message);
     res.status(500).json({ message: "Server error" });
