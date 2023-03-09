@@ -5,14 +5,23 @@ const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
-const adminRouter = require("./src/routers/admin")
+const adminRouter = require("./src/routers/admin");
 const { json } = require("body-parser");
-const userData = require("./src/data/user.json")
-const {createRequestController} = require("./src/controllers/request.controller")
-const {createTestController} = require("./src/controllers/test.controller")
-const {createPlanController, getPlanController} = require("./src/controllers/plan.controller")
+const userData = require("./src/data/user.json");
+const {
+  createRequestController,
+  getRequestController,
+} = require("./src/controllers/request.controller");
+const {
+  createTestController,
+  getTestController,
+} = require("./src/controllers/test.controller");
+const {
+  createPlanController,
+  getPlanController,
+} = require("./src/controllers/plan.controller");
 let port = process.env.PORT || 5000;
- 
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -24,12 +33,12 @@ const options = {
     servers: [
       {
         url: "http://localhost:5000",
-      } , 
+      },
       {
-        url : "https://halal-uz-backend-production.up.railway.app"
-      } 
+        url: "https://halal-uz-backend-production.up.railway.app",
+      },
     ],
-  }, 
+  },
   apis: ["./index.js"],
 };
 
@@ -38,44 +47,72 @@ app.use(json());
 
 const swaggerSpec = swaggerJSDOC(options);
 app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use("/admin" , adminRouter)
+app.use("/admin", adminRouter);
 // app.use(express.static("public"));
 // app.use("/img", express.static(path.join(__dirname, "public/img")));
 
-const uri = "mongodb+srv://jasurbek1221:zg4ifgKiaVTL0nUu@worldhalal.jnka9xa.mongodb.net/?retryWrites=true&w=majority"
-async function connect() {  
-  try { 
+const uri =
+  "mongodb+srv://jasurbek1221:zg4ifgKiaVTL0nUu@worldhalal.jnka9xa.mongodb.net/?retryWrites=true&w=majority";
+async function connect() {
+  try {
     await mongoose.connect(uri);
-    console.log("Connected MongoDB "); 
+    console.log("Connected MongoDB ");
   } catch (error) {
     console.log(error);
   }
 }
 connect();
 
-
 /**
  * @swagger
  * /request:
  *   post:
- *     summary: Request post
+ *     summary: request 
  *     requestBody:
  *        content:
  *          application/json:
- *     description: For request post method
+ *            schema:
+ *              type: object
+ *              properties:
+ *                email:
+ *                  type: string
+ *                password:
+ *                  type: string
+ *                name : 
+ *                  type : string
+ *              required:
+ *                - email
+ *                - password
+ *                - name
+ *     description: Request
  *     responses:
  *         201:
- *         description: Request sended in database
+ *         description: Request sended
  * 400 :
- *      description : Already exites email users
+ *      description : Error
  *parameters : 
     -name : TITLE 
     in : formData
     required : true
  */
 
+ /**
+ * @swagger
+ * /request:
+ *   get:
+ *     description: Request Get Method
+ *     responses:
+ *       200:
+ *         description: Request List
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
 
-    /**
+/**
  * @swagger
  * /plan:
  *   post:
@@ -108,7 +145,7 @@ connect();
     required : true
  */
 
-      /**
+/**
  * @swagger
  * /test:
  *   post:
@@ -138,16 +175,14 @@ connect();
     required : true
  */
 
-
-
 /**
  * @swagger
  * /plan:
  *   get:
- *     description: This is get method for plans
+ *     description: Plan Get Method
  *     responses:
  *       200:
- *         description: Plans list
+ *         description: Plan   List
  * 400:
  *      description : Error user 
  *parameters : 
@@ -156,7 +191,6 @@ connect();
     required : true
  */
 
-    
 /**
  * @swagger
  * /user:
@@ -173,7 +207,29 @@ connect();
     required : true
  */
 
-    /**
+/**
+ * @swagger
+ * /test:
+ *   get:
+ *     description: Test API
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+// app.use((req, res, next) => {
+//   req.headers.authorization;
+//   console.log(req.path);
+//   next();
+// });
+
+/**
  * @swagger
  * /aboutCompany:
  *   get:
@@ -189,28 +245,29 @@ connect();
     required : true
  */
 
-
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
 //   next();
-// });  
+// });
 
 app.get("/", (req, res) => {
   res.send("hello world");
 });
 
 app.post("/request", createRequestController);
-app.post("/plan", createPlanController)
-app.get("/plan", getPlanController)
-app.post("/test"  , createTestController);
+app.get("/request" , getRequestController)
+app.post("/plan", createPlanController);
+app.get("/plan", getPlanController);
+app.post("/test", createTestController);
+app.get("/test", getTestController);
 app.get("/user", (req, res) => {
   res.status(200).json(userData);
-})
-app.get('/aboutCompany', (req, res) => {
+});
+app.get("/aboutCompany", (req, res) => {
   const data = {
     title: "API Title",
-    description: "API Description"
+    description: "API Description",
   };
 
   res.json(data);

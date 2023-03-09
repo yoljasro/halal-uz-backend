@@ -1,11 +1,15 @@
 const Request = require("../models/request");
 
+const getRequestController = async (req, res) => {
+  const request = await Request.find();
+  res.status(200).json({ request });
+};
 const createRequestController = async (req, res) => {
   try {
     console.log(req.body);
     const { name, surname, brandName, activity, phone, email } = req.body;
 
-    const candidate = await User.findOne({ email });
+    const candidate = await Request.findOne({ email });
 
     if (candidate)
       return res.status(400).json({ message: "Email already exits" });
@@ -32,4 +36,5 @@ const createRequestController = async (req, res) => {
 
 module.exports = {
   createRequestController,
+  getRequestController
 };
