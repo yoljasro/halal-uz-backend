@@ -47,7 +47,7 @@ app.use(json());
 
 const swaggerSpec = swaggerJSDOC(options);
 app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use("/admin", adminRouter);
+// app.use("/admin", adminRouter);
 // app.use(express.static("public"));
 // app.use("/img", express.static(path.join(__dirname, "public/img")));
 
