@@ -3,12 +3,34 @@ const AdminBro = require("admin-bro");
 const AdminBroExpress = require("admin-bro-expressjs");
 const AdminBroMongoose = require("admin-bro-mongoose");
 const mongoose =require("mongoose")
+// models
+const About = require("../models/about")
+const Request = require("../models/request")
+const Restaurant = require("../models/restaurant")
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
 const adminBro = new AdminBro({
     databases : [mongoose] , 
     rootPath : "/admin"  ,
+    resources: [
+      {
+        resource: Request
+      } ,
+      {
+        resource : About
+      } , 
+      { 
+        resource : Restaurant ,
+        options: {
+          properties: {
+            image: {
+              isVisible: true,
+            },
+          },
+        },
+      }
+    ]
 })
 
 const ADMIN ={

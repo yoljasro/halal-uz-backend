@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const adminRouter = require("./src/routers/admin");
 const { json } = require("body-parser");
 const userData = require("./src/data/user.json");
+// controllers
 const {
   createRequestController,
   getRequestController,
@@ -16,6 +17,14 @@ const {
   createTestController,
   getTestController,
 } = require("./src/controllers/test.controller");
+const {
+  createRestaurantController,
+  getRestaurantController,
+} = require("./src/controllers/restaurant.controller");
+const {
+  createAboutController,
+  getAboutController,
+} = require("./src/controllers/about.controller");
 const {
   createPlanController,
   getPlanController,
@@ -47,7 +56,7 @@ app.use(json());
 
 const swaggerSpec = swaggerJSDOC(options);
 app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-// app.use("/admin", adminRouter);
+app.use("/admin", adminRouter);
 // app.use(express.static("public"));
 // app.use("/img", express.static(path.join(__dirname, "public/img")));
 
@@ -96,7 +105,7 @@ connect();
     required : true
  */
 
- /**
+/**
  * @swagger
  * /request:
  *   get:
@@ -139,6 +148,76 @@ connect();
  *         description: Created database plans
  * 400 :
  *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /about:
+ *   post:
+ *     summary: About Company post 
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Description Added
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /restaurant:
+ *   post:
+ *     summary: Restaurant API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Restaurant added
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /restaurant:
+ *   get:
+ *     description: Restaurants
+ *     responses:
+ *       200:
+ *         description: Lists Restorans
+ * 400:
+ *      description : Error user 
  *parameters : 
     -name : TITLE 
     in : formData
@@ -231,7 +310,7 @@ connect();
 
 /**
  * @swagger
- * /aboutCompany:
+ * /about:
  *   get:
  *     description: About company API
  *     responses:
@@ -256,21 +335,17 @@ app.get("/", (req, res) => {
 });
 
 app.post("/request", createRequestController);
-app.get("/request" , getRequestController)
+app.get("/request", getRequestController);
+app.post("/about", createAboutController);
+app.get("/about", getAboutController);
+app.post("/restaurant", createRestaurantController);
+app.get("/restaurant", getRestaurantController);
 app.post("/plan", createPlanController);
 app.get("/plan", getPlanController);
 app.post("/test", createTestController);
 app.get("/test", getTestController);
 app.get("/user", (req, res) => {
   res.status(200).json(userData);
-});
-app.get("/aboutCompany", (req, res) => {
-  const data = {
-    title: "API Title",
-    description: "API Description",
-  };
-
-  res.json(data);
 });
 
 app.listen(port, () => {
