@@ -4,8 +4,8 @@
   "description": "this is halol uz package",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon start",
-    "dev": ""
+    "start": "node index.js",
+    "dev": "node index.js"
   },
   "keywords": [
     "halol",
