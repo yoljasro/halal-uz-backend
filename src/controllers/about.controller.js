@@ -7,9 +7,10 @@ const getAboutController = async (req, res) => {
 
 const createAboutController = async (req, res) => {
   try {
-    const { description } = req.body;
+    const {title ,  description } = req.body;
 
     const newAbout = {
+      title : title,
       description: description,
     };
 
