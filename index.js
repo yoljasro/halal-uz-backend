@@ -44,11 +44,8 @@ const options = {
         url: "http://localhost:5000",
       },
       {
-        url: "https://halal-uz-backend-production.up.railway.app",
+        url: "http://smartshopcenter.org:5000",
       },
-      {
-        url : "http://smartshopcenter.org:5000"
-      }
     ],
   },
   apis: ["./index.js"],
