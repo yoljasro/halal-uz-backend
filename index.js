@@ -7,12 +7,17 @@ const path = require("path");
 const mongoose = require("mongoose");
 const adminRouter = require("./src/routers/admin");
 const { json } = require("body-parser");
+const multer = require("multer");
 const userData = require("./src/data/user.json");
 // controllers
 const {
   createRequestController,
   getRequestController,
 } = require("./src/controllers/request.controller");
+const {
+  createPupilController,
+  getPupilController,
+} = require("./src/controllers/pupil.controller");
 const {
   createTestController,
   getTestController,
@@ -53,7 +58,7 @@ const options = {
 
 app.use(cors());
 app.use(json());
-
+const upload = multer({ dest: "uploads/" });
 const swaggerSpec = swaggerJSDOC(options);
 app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/admin", adminRouter);
@@ -324,6 +329,51 @@ connect();
     required : true
  */
 
+// course APIS
+
+/**
+ * @swagger
+ * /pupils:
+ *   post:
+ *     summary: Pupils API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Pupils request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /pupils:
+ *   get:
+ *     description: Pupils 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
@@ -336,6 +386,9 @@ app.get("/", (req, res) => {
 
 app.post("/request", createRequestController);
 app.get("/request", getRequestController);
+app.post("/course/upload", upload.single("file"), (req, res) => {
+  const file = req.file;
+});
 app.post("/about", createAboutController);
 app.get("/about", getAboutController);
 app.post("/restaurant", createRestaurantController);
@@ -344,6 +397,8 @@ app.post("/plan", createPlanController);
 app.get("/plan", getPlanController);
 app.post("/test", createTestController);
 app.get("/test", getTestController);
+app.post("/pupils", createPupilController);
+app.get("/pupils", getPupilController);
 app.get("/user", (req, res) => {
   res.status(200).json(userData);
 });

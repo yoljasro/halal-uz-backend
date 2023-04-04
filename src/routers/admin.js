@@ -7,10 +7,14 @@ const mongoose =require("mongoose")
 const About = require("../models/about")
 const Request = require("../models/request")
 const Restaurant = require("../models/restaurant")
+const Pupils = require("../models/pupils")
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
 const adminBro = new AdminBro({
+  branding: {
+    companyName: 'JasurBek'
+  } ,
     databases : [mongoose] , 
     rootPath : "/admin"  ,
     resources: [
@@ -19,6 +23,9 @@ const adminBro = new AdminBro({
       } ,
       {
         resource : About
+      } , 
+      {
+        resource : Pupils
       } , 
       { 
         resource : Restaurant ,
