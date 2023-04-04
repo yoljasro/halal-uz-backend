@@ -49,7 +49,7 @@ const options = {
         url: "http://localhost:5000",
       },
       {
-        url: "http://smartshopcenter.org:5000",
+        url: "https://api.smartshopcenter.org",
       },
     ],
   },
