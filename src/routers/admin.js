@@ -8,6 +8,7 @@ const About = require("../models/about")
 const Request = require("../models/request")
 const Restaurant = require("../models/restaurant")
 const Pupils = require("../models/pupils")
+const MotherTongue = require("../models/motherTongue")
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
@@ -39,7 +40,7 @@ const adminBro = new AdminBro({
       }
     ]
 })
-
+ 
 const ADMIN ={
     email: process.env.ADMIN_EMAIL ||  "saidaliyevjasur450@gmail.com" , 
     password: process.env.ADMIN_PASSWORD || "worldhalal1221" , 

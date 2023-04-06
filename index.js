@@ -18,6 +18,7 @@ const {
   createPupilController,
   getPupilController,
 } = require("./src/controllers/pupil.controller");
+const {getMotherTongueController , createMotherTongueController} = require("./src/controllers/courseMother.controller")
 const {
   createTestController,
   getTestController,
@@ -374,6 +375,50 @@ connect();
     required : true
  */
 
+
+/**
+ * @swagger
+ * /mothertongue:
+ *   post:
+ *     summary: MOther tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Mother tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /mothertongue:
+ *   get:
+ *     description: Mother Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
@@ -399,6 +444,8 @@ app.post("/test", createTestController);
 app.get("/test", getTestController);
 app.post("/pupils", createPupilController);
 app.get("/pupils", getPupilController);
+app.post("/mothertongue" , createMotherTongueController)
+app.get("/motherTongue" , getMotherTongueController)
 app.get("/user", (req, res) => {
   res.status(200).json(userData);
 });
