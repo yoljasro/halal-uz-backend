@@ -18,7 +18,6 @@ const {
   createPupilController,
   getPupilController,
 } = require("./src/controllers/pupil.controller");
-const {getMotherTongueController , createMotherTongueController} = require("./src/controllers/courseMother.controller")
 const {
   createTestController,
   getTestController,
@@ -35,6 +34,14 @@ const {
   createPlanController,
   getPlanController,
 } = require("./src/controllers/plan.controller");
+const {getMotherTongueController , createMotherTongueController} = require("./src/controllers/courseMother.controller")
+const {createBiologyController , getBiologyController} = require("./src/controllers/biology.controller")
+const {createEnglishController , getEnglishController} = require("./src/controllers/english.controller")
+const {createFiziController , getFiziController} = require("./src/controllers/fizi.controller")
+const {createLiteratureController , getLiteratureController} = require("./src/controllers/literature.controller")
+const {createMathController , getMathController} = require("./src/controllers/math.controller")
+const {createRussianController , getRussianController} = require("./src/controllers/russian.controller")
+const {createKimyoController , getKimyoController} = require("./src/controllers/kimyo.controller")
 let port = process.env.PORT || 5000;
 
 const options = {
@@ -419,6 +426,315 @@ connect();
     required : true
  */
 
+/**
+ * @swagger
+ * /biology:
+ *   post:
+ *     summary: Biology tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: BIology tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+    /**
+ * @swagger
+ * /biology:
+ *   get:
+ *     description: Biology Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /math:
+ *   post:
+ *     summary: BioMathlogy tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: BIology tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+   /**
+ * @swagger
+ * /math:
+ *   get:
+ *     description: Math Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /kimyo:
+ *   post:
+ *     summary: Kimyo tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: BIology tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+
+  /**
+ * @swagger
+ * /kimyo:
+ *   get:
+ *     description: Kimyo Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /literature:
+ *   post:
+ *     summary: Literature tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Literature tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+
+  /**
+ * @swagger
+ * /literature:
+ *   get:
+ *     description: Kimyo Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /russian:
+ *   post:
+ *     summary: Literature tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Literature tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+  /**
+ * @swagger
+ * /russian:
+ *   get:
+ *     description: Kimyo Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+
+/**
+ * @swagger
+ * /fizi:
+ *   post:
+ *     summary: Fizika tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Literature tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+  /**
+ * @swagger
+ * /fizi:
+ *   get:
+ *     description: Fizi Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+/**
+ * @swagger
+ * /english:
+ *   post:
+ *     summary: English tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Literature tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+  /**
+ * @swagger
+ * /english:
+ *   get:
+ *     description: English Tongue 
+ *     responses:
+ *       200:
+ *         description: Succesfull
+ * 400:
+ *      description : Error user 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
@@ -446,6 +762,20 @@ app.post("/pupils", createPupilController);
 app.get("/pupils", getPupilController);
 app.post("/mothertongue" , createMotherTongueController)
 app.get("/motherTongue" , getMotherTongueController)
+app.post("/biology" , createBiologyController)
+app.get("/biology" , getBiologyController)
+app.post("/math"  , createMathController)
+app.get("/math" , getMathController)
+app.post("/kimyo" , createKimyoController) 
+app.get("/kimyo" , getKimyoController)
+app.post("/literature" ,createLiteratureController)
+app.get("/literature" , getLiteratureController)
+app.post("/russian" , createRussianController)
+app.get("/russian" , getRussianController)
+app.post("/fizi" , createFiziController)
+app.get("/fizi" , getFiziController)
+app.post("/english" , createEnglishController)
+app.get("/english" , getEnglishController)
 app.get("/user", (req, res) => {
   res.status(200).json(userData);
 });
