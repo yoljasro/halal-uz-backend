@@ -17,6 +17,7 @@ const Literature = require("../models/literature");
 const Russian = require("../models/russian");
 const Fizi = require("../models/fizi");
 const English = require("../models/english");
+const Register = require("../models/register")
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
@@ -60,6 +61,9 @@ const adminBro = new AdminBro({
     {
       resource: English,
     },
+    {
+      resource: Register,
+    } ,
     {
       resource: Restaurant,
       options: {

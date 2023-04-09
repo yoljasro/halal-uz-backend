@@ -14,6 +14,7 @@ const {
   createRequestController,
   getRequestController,
 } = require("./src/controllers/request.controller");
+const {createUserController  , getUserController ,loginController}=  require("./src/controllers/user.controller")
 const {
   createPupilController,
   getPupilController,
@@ -735,6 +736,80 @@ connect();
  */
 
 
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Register tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Literature tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Login tongue  API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Login tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+ /**
+ * @swagger
+ * /register:
+ *   get:
+ *     description: Registered Users 
+ *     responses:
+ *       201:
+ *         description: Created
+ * 400:
+ *      description : User error 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
@@ -776,6 +851,9 @@ app.post("/fizi" , createFiziController)
 app.get("/fizi" , getFiziController)
 app.post("/english" , createEnglishController)
 app.get("/english" , getEnglishController)
+app.post("/register"  , createUserController)
+app.get("/register" , getUserController)
+app.post("/login" , loginController)
 app.get("/user", (req, res) => {
   res.status(200).json(userData);
 });
