@@ -19,7 +19,7 @@ const createUserController = async (req, res) => {
     if (candidate)
       return res.status(400).json({ message: "Email already exits" });
 
-    const hashPassword = await bcrypt.hash(password, 12);
+    const hashPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
       email,
