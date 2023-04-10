@@ -3,10 +3,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const getUserController = async (req, res) => {
-  const { userId } = req.user;
-  const user = await User.findOne({ _id: userId }).select("email name");
+  // const { userId } = req.user;
+  // const user = await User.findOne({ _id: userId });
 
-  res.status(200).json({ user });
+  // res.status(200).json({ user });
+  const user = await User.find()
+  res.status(200).json({user})
 };
 
 const createUserController = async (req, res) => {
