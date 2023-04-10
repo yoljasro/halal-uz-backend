@@ -740,7 +740,7 @@ connect();
  * @swagger
  * /register:
  *   post:
- *     summary: Register tongue  API
+ *     summary: Online Market
  *     requestBody:
  *        content:
  *          application/json:
@@ -769,7 +769,7 @@ connect();
  * @swagger
  * /login:
  *   post:
- *     summary: Login tongue  API
+ *     summary: Online Market
  *     requestBody:
  *        content:
  *          application/json:
