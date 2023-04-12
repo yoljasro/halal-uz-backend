@@ -4,8 +4,7 @@
   "description": "this is halol uz package",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "halol",
@@ -18,15 +17,18 @@
     "admin-bro-expressjs": "^2.1.1",
     "admin-bro-mongoose": "^0.5.2",
     "adminjs": "^6.8.7",
+    "argon2": "^0.30.3",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.7.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.6.0"
   }

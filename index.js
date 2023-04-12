@@ -43,6 +43,7 @@ const {createLiteratureController , getLiteratureController} = require("./src/co
 const {createMathController , getMathController} = require("./src/controllers/math.controller")
 const {createRussianController , getRussianController} = require("./src/controllers/russian.controller")
 const {createKimyoController , getKimyoController} = require("./src/controllers/kimyo.controller")
+const {createCoursesController , getCoursesController} = require("./src/controllers/course.controller")
 let port = process.env.PORT || 5000;
 
 const options = {
@@ -67,12 +68,13 @@ const options = {
 
 app.use(cors());
 app.use(json());
-const upload = multer({ dest: "uploads/" });
+app.use('/uploads', express.static('uploads'));
 const swaggerSpec = swaggerJSDOC(options);
 app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/admin", adminRouter);
 // app.use(express.static("public"));
 // app.use("/img", express.static(path.join(__dirname, "public/img")));
+
 
 const uri =
   "mongodb+srv://jasurbek1221:zg4ifgKiaVTL0nUu@worldhalal.jnka9xa.mongodb.net/?retryWrites=true&w=majority";
@@ -85,6 +87,9 @@ async function connect() {
   }
 }
 connect();
+
+
+
 
 /**
  * @swagger
@@ -767,6 +772,34 @@ connect();
 
 /**
  * @swagger
+ * /courses:
+ *   post:
+ *     summary: Courses API
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Added COurses
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+    
+ */
+
+/**
+ * @swagger
  * /login:
  *   post:
  *     summary: Online Market
@@ -810,6 +843,22 @@ connect();
  */
 
 
+/**
+ * @swagger
+ * /courses:
+ *   get:
+ *     description: Courses Users 
+ *     responses:
+ *       201:
+ *         description: Created
+ * 400:
+ *      description : User error 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
 // app.use((req, res, next) => {
 //   req.headers.authorization;
 //   console.log(req.path);
@@ -822,9 +871,6 @@ app.get("/", (req, res) => {
 
 app.post("/request", createRequestController);
 app.get("/request", getRequestController);
-app.post("/course/upload", upload.single("file"), (req, res) => {
-  const file = req.file;
-});
 app.post("/about", createAboutController);
 app.get("/about", getAboutController);
 app.post("/restaurant", createRestaurantController);
@@ -851,6 +897,8 @@ app.post("/fizi" , createFiziController)
 app.get("/fizi" , getFiziController)
 app.post("/english" , createEnglishController)
 app.get("/english" , getEnglishController)
+app.post("/courses" , createCoursesController) 
+app.get("/courses" , getCoursesController)
 app.post("/register"  , createUserController)
 app.get("/register" , getUserController)
 app.post("/login" , loginController)
