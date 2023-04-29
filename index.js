@@ -44,6 +44,7 @@ const {createMathController , getMathController} = require("./src/controllers/ma
 const {createRussianController , getRussianController} = require("./src/controllers/russian.controller")
 const {createKimyoController , getKimyoController} = require("./src/controllers/kimyo.controller")
 const {createCoursesController , getCoursesController} = require("./src/controllers/course.controller")
+const {createCourseInformationController , getCoursesInformationController} = require("./src/controllers/courseInformation.controller")
 let port = process.env.PORT || 5000;
 
 const options = {
@@ -59,7 +60,7 @@ const options = {
         url: "http://localhost:5000",
       },
       {
-        url: "https://api.smartshopcenter.org",
+        url: "http://smartshopcenter.org:5000",
       },
     ],
   },
@@ -842,6 +843,48 @@ connect();
     required : true
  */
 
+ /**
+ * @swagger
+ * /coursesinformation:
+ *   get:
+ *     description: Courses desc 
+ *     responses:
+ *       201:
+ *         description: Created
+ * 400:
+ *      description : User error 
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
+ */
+
+
+/**
+ * @swagger
+ * /courseinformation:
+ *   post:
+ *     summary: course description -- Title  , description
+ *     requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                description:
+ *                  type: string
+ *              required:
+ *                - description
+ *     description: Description
+ *     responses:
+ *         201:
+ *         description: Login tongue  request sended
+ * 400 :
+ *      description : Error
+ *parameters : 
+    -name : TITLE 
+    in : formData
+    required : true
 
 /**
  * @swagger
@@ -899,6 +942,8 @@ app.post("/english" , createEnglishController)
 app.get("/english" , getEnglishController)
 app.post("/courses" , createCoursesController) 
 app.get("/courses" , getCoursesController)
+app.post("/courseinformation" , createCourseInformationController)
+app.get("/courseinformation"   , getCoursesInformationController)
 app.post("/register"  , createUserController)
 app.get("/register" , getUserController)
 app.post("/login" , loginController)

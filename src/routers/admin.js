@@ -18,7 +18,8 @@ const Russian = require("../models/russian");
 const Fizi = require("../models/fizi");
 const English = require("../models/english");
 const Register = require("../models/register");
-const Course = require("../models/courses")
+const Course = require("../models/courses");
+const CourseInformation = require("../models/courseInformation");
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
@@ -35,17 +36,15 @@ const adminBro = new AdminBro({
         parent: {
           name: "Halal requests",
           icon: "fas fa-cogs",
-        },  
-        resource:[
-          "pathname"
-        ]
+        },
+        resource: ["pathname"],
       },
     },
     {
       resource: About,
     },
     {
-      resource : Course , 
+      resource: Course,
       // options:{
       //   properties:{
       //       image : {
@@ -55,9 +54,12 @@ const adminBro = new AdminBro({
       //       }
       //   }
       // }
-    } , 
-     
-    { 
+    },
+    {
+      resource: CourseInformation,
+    },
+
+    {
       resource: Pupils,
     },
     {
@@ -76,7 +78,7 @@ const adminBro = new AdminBro({
       resource: Literature,
     },
     {
-      resource: Russian
+      resource: Russian,
     },
     {
       resource: Fizi,
